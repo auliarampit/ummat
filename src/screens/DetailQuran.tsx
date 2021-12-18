@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   FlatList,
   ImageBackground,
@@ -15,26 +15,25 @@ import AppBar from '../components/ui/AppBar';
 import Statusbar from '../components/ui/StatusBar';
 
 const DetailQuran = () => {
+  const [data, setData] = useState<Object>(Object);
   const {params} = useRoute();
   const navigation = useNavigation();
 
-  console.warn(params);
+  useEffect(() => {
+    _searchFilterFunction();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  //   function _searchFilterFunction(searchText) {
-  //     let newData = [];
-  //     if (searchText) {
-  //       newData = data.filter(function (item) {
-  //         const itemData = item.name.toUpperCase();
-  //         const textData = searchText.toUpperCase();
+  function _searchFilterFunction() {
+    let newData = [];
+    newData = detailSurah.filter(function (item) {
+      const itemData = item.nomor.toString();
+      const itemData2 = params?.data.toString();
 
-  //         return itemData.includes(textData);
-  //       });
-  //       setData([...newData]);
-  //     } else {
-  //       getData();
-  //       setData([...data]);
-  //     }
-  //   }
+      return itemData.includes(itemData2);
+    });
+    setData([...newData]);
+  }
 
   const renderItems = (item: {
     id?: number;
@@ -67,11 +66,14 @@ const DetailQuran = () => {
     <Fragment>
       <Statusbar />
       <SafeAreaView style={styles.container}>
-        <AppBar onPress={() => navigation.goBack()} title="Al-Fatihah" />
+        <AppBar
+          onPress={() => navigation.goBack()}
+          title={data[0]?.nama_latin}
+        />
         <FlatList
           keyExtractor={e => e.id.toString()}
           showsVerticalScrollIndicator={false}
-          data={detailSurah[0].ayat}
+          data={data[0]?.ayat}
           renderItem={({item}) => renderItems(item)}
         />
       </SafeAreaView>

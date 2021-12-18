@@ -9,11 +9,14 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import Colors from '../assets/resources/colors';
 import fonts from '../assets/resources/fonts';
 import AppBar from '../components/ui/AppBar';
 import StatusBar from '../components/ui/StatusBar';
+
+const width = Dimensions.get('screen').width;
 
 const Home: FC = () => {
   const navigation = useNavigation();
@@ -22,18 +25,32 @@ const Home: FC = () => {
       id: 1,
       button: 'Al Quran',
       onPress: () => navigation.navigate('Quran'),
+      image: require('../assets/images/quran.png'),
     },
     {
       id: 2,
-      button: 'Memori',
+      button: 'Sholat',
+      image: require('../assets/images/sholat.jpg'),
     },
     {
       id: 3,
       button: 'Tajwid',
+      image: require('../assets/images/tajwid.png'),
     },
     {
-      id: 1,
-      button: 'Al Quran',
+      id: 4,
+      button: 'Doa-doa',
+      image: require('../assets/images/doa.jpg'),
+    },
+    {
+      id: 5,
+      button: 'Kalender',
+      image: require('../assets/images/hijriah.webp'),
+    },
+    {
+      id: 6,
+      button: 'Hadits',
+      image: require('../assets/images/hadists.png'),
     },
   ];
   return (
@@ -63,12 +80,17 @@ const Home: FC = () => {
               showsVerticalScrollIndicator={false}
               keyExtractor={item => item.id.toString()}
               data={button}
-              numColumns={2}
+              numColumns={3}
               renderItem={({item}) => {
                 return (
                   <TouchableOpacity
                     onPress={item.onPress}
                     style={styles.button}>
+                    <Image
+                      source={item?.image}
+                      style={styles.img}
+                      resizeMode="stretch"
+                    />
                     <Text>{item.button}</Text>
                   </TouchableOpacity>
                 );
@@ -129,13 +151,22 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   button: {
-    width: 110,
-    height: 140,
-    backgroundColor: Colors.info,
-    margin: 4,
-    justifyContent: 'center',
+    width: width / 3.9,
+    height: 120,
+    backgroundColor: Colors.white,
+    margin: 8,
+    alignItems: 'center',
+    justifyContent: 'space-around',
     padding: 12,
     borderRadius: 20,
+    borderWidth: 1.5,
+    elevation: 10,
+    borderColor: Colors.info,
+  },
+  img: {
+    height: 60,
+    width: 60,
+    borderRadius: 50,
   },
 });
 

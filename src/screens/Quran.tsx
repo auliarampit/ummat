@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {FC, Fragment} from 'react';
+import React, {FC, Fragment, useState} from 'react';
 import {
   View,
   Text,
@@ -19,13 +19,26 @@ import StatusBar from '../components/ui/StatusBar';
 const Quran: FC = () => {
   const navigation = useNavigation();
 
-  const onChange = (e: any) => {
-    console.warn(e);
-  };
+  const [data, setData] = useState(surah);
 
-  const toDetail = (item: {nomor: any}) => {
+  function _searchFilterFunction(searchText: string) {
+    let newData = [];
+    if (searchText) {
+      newData = surah.filter(function (item) {
+        const itemData = item.nama_latin.toUpperCase();
+        const textData = searchText.toUpperCase();
+
+        return itemData.includes(textData);
+      });
+      setData([...newData]);
+    } else {
+      setData(surah);
+    }
+  }
+
+  const toDetail = (item: {nomor: object}) => {
     navigation.navigate('DetailQuran', {
-      params: item.nomor,
+      data: item.nomor,
     });
   };
 
@@ -60,11 +73,11 @@ const Quran: FC = () => {
       <StatusBar />
       <SafeAreaView style={styles.container}>
         <AppBar title="Al-Quran" onPress={() => navigation.goBack()} />
-        <Search action={e => onChange(e)} />
+        <Search action={e => _searchFilterFunction(e)} />
         <FlatList
           keyExtractor={e => e.deskripsi.toString()}
           showsVerticalScrollIndicator={false}
-          data={surah}
+          data={data}
           renderItem={({item}) => renderItems(item)}
         />
       </SafeAreaView>

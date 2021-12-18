@@ -7,7 +7,7 @@ import {QuranScreen, HomeScreen, DetailQuranScreen} from '../screens';
 export type MainStack = {
   Home: undefined;
   Quran: undefined;
-  DetailQuran: {quran: number};
+  DetailQuran: {quran: object};
 };
 
 export interface RootStackParamList extends MainStack {}
