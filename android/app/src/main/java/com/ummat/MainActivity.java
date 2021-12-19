@@ -2,6 +2,7 @@ package com.ummat;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
+import com.facebook.react.modules.i18nmanager.I18nUtil;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,13 +13,12 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "ummat";
-    
-    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
-    sharedI18nUtilInstance.allowRTL(context, true);
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) { 
     super.onCreate(null);
+    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+    sharedI18nUtilInstance.allowRTL(getApplicationContext(), true);
   }
 }

@@ -2,12 +2,18 @@ import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {QuranScreen, HomeScreen, DetailQuranScreen} from '../screens';
+import {
+  QuranScreen,
+  HomeScreen,
+  DetailQuranScreen,
+  JadwalSholatScreen,
+} from '../screens';
 
 export type MainStack = {
   Home: undefined;
   Quran: undefined;
   DetailQuran: {quran: object};
+  JadwalSholat: undefined;
 };
 
 export interface RootStackParamList extends MainStack {}
@@ -37,6 +43,11 @@ const Route: FC = () => {
         <Stack.Screen
           name="DetailQuran"
           component={DetailQuranScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="JadwalSholat"
+          component={JadwalSholatScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

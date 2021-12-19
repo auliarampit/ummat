@@ -30,6 +30,7 @@ const Home: FC = () => {
     {
       id: 2,
       button: 'Sholat',
+      onPress: () => navigation.navigate('JadwalSholat'),
       image: require('../assets/images/sholat.jpg'),
     },
     {
