@@ -25,6 +25,7 @@ const JadwalSholat = () => {
       .then(response => response.json())
       .then(json => {
         setData(json.data);
+        console.error(json);
       })
       .catch(error => {
         console.error(error);
@@ -36,35 +37,35 @@ const JadwalSholat = () => {
       <StatusBar />
       <SafeAreaView style={styles.container}>
         <AppBar title="Jadwal Sholat" onPress={() => navigation.goBack()} />
-        <Text style={styles.title}>Area {data.lokasi} dan Sekitar-nya</Text>
+        <Text style={styles.title}>Area {data?.lokasi} dan Sekitar-nya</Text>
         <View style={styles.jadwal}>
           <Text style={styles.text}>Imsak</Text>
-          <Text style={styles.text}>{data.jadwal?.imsak}</Text>
+          <Text style={styles.text}>{data?.jadwal?.imsak}</Text>
         </View>
 
         <View style={styles.jadwal}>
           <Text style={styles.text}>Subuh</Text>
-          <Text style={styles.text}>{data.jadwal?.subuh}</Text>
+          <Text style={styles.text}>{data?.jadwal?.subuh}</Text>
         </View>
 
         <View style={styles.jadwal}>
           <Text style={styles.text}>Dhuhur</Text>
-          <Text style={styles.text}>{data.jadwal?.dzuhur}</Text>
+          <Text style={styles.text}>{data?.jadwal?.dzuhur}</Text>
         </View>
 
         <View style={styles.jadwal}>
           <Text style={styles.text}>'Asar</Text>
-          <Text style={styles.text}>{data.jadwal?.ashar}</Text>
+          <Text style={styles.text}>{data?.jadwal?.ashar}</Text>
         </View>
 
         <View style={styles.jadwal}>
           <Text style={styles.text}>Maghrib</Text>
-          <Text style={styles.text}>{data.jadwal?.maghrib}</Text>
+          <Text style={styles.text}>{data?.jadwal?.maghrib}</Text>
         </View>
 
         <View style={styles.jadwal}>
           <Text style={styles.text}>'Isya</Text>
-          <Text style={styles.text}>{data.jadwal?.isya}</Text>
+          <Text style={styles.text}>{data?.jadwal?.isya}</Text>
         </View>
       </SafeAreaView>
     </Fragment>
