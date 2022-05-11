@@ -1,7 +1,7 @@
 {
   "name": "ummat",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -44,5 +44,20 @@
       "json",
       "node"
     ]
-  }
+  },
+  "description": "ini hanya lah sebuah test build project ke npm",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auliarampit/ummat.git"
+  },
+  "keywords": [
+    "ummat"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/auliarampit/ummat/issues"
+  },
+  "homepage": "https://github.com/auliarampit/ummat#readme"
 }
